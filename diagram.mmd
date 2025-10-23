@@ -1,0 +1,188 @@
+classDiagram
+    class User {
+        -String name
+        -String email
+        -String password
+        -String role
+        +User(name, email, password, role)
+        +getName() String
+        +getEmail() String
+        +getPassword() String
+        +getRole() String
+        +setName(name) void
+        +setEmail(email) void
+        +setPassword(password) void
+        +setRole(role) void
+        +displayInfo() void
+        +toString() String
+    }
+
+    class Customer {
+        -String address
+        -String phoneNumber
+        -List~Order~ orderHistory
+        +Customer(name, email, password, address, phoneNumber)
+        +getAddress() String
+        +getPhoneNumber() String
+        +getOrderHistory() List~Order~
+        +setAddress(address) void
+        +setPhoneNumber(phoneNumber) void
+        +addOrder(order) void
+        +displayInfo() void
+        +viewOrderHistory() void
+    }
+
+    class Employee {
+        -String employeeId
+        -String department
+        -double salary
+        +Employee(name, email, password, employeeId, department, salary)
+        +getEmployeeId() String
+        +getDepartment() String
+        +getSalary() double
+        +setEmployeeId(employeeId) void
+        +setDepartment(department) void
+        +setSalary(salary) void
+        +displayInfo() void
+        +calculateAnnualSalary() double
+    }
+
+    class Product {
+        -String id
+        -String name
+        -double price
+        -int stockQuantity
+        +Product(id, name, price, stockQuantity)
+        +getId() String
+        +getName() String
+        +getPrice() double
+        +getStockQuantity() int
+        +setId(id) void
+        +setName(name) void
+        +setPrice(price) void
+        +setStockQuantity(stockQuantity) void
+        +displayInfo() void
+        +isInStock() boolean
+        +reduceStock(quantity) boolean
+        +addStock(quantity) void
+        +toString() String
+    }
+
+    class Book {
+        -String author
+        -String isbn
+        -String genre
+        +Book(id, name, price, stockQuantity, author, isbn, genre)
+        +getAuthor() String
+        +getIsbn() String
+        +getGenre() String
+        +setAuthor(author) void
+        +setIsbn(isbn) void
+        +setGenre(genre) void
+        +displayInfo() void
+        +toString() String
+    }
+
+    class Electronics {
+        -String brand
+        -String model
+        -String warranty
+        +Electronics(id, name, price, stockQuantity, brand, model, warranty)
+        +getBrand() String
+        +getModel() String
+        +getWarranty() String
+        +setBrand(brand) void
+        +setModel(model) void
+        +setWarranty(warranty) void
+        +displayInfo() void
+        +toString() String
+    }
+
+    class Clothing {
+        -String size
+        -String color
+        -String material
+        +Clothing(id, name, price, stockQuantity, size, color, material)
+        +getSize() String
+        +getColor() String
+        +getMaterial() String
+        +setSize(size) void
+        +setColor(color) void
+        +setMaterial(material) void
+        +displayInfo() void
+        +toString() String
+    }
+
+    class Order {
+        -String orderId
+        -Customer customer
+        -List~Product~ products
+        -double totalAmount
+        -String orderDate
+        -String status
+        +Order(orderId, customer, orderDate)
+        +getOrderId() String
+        +getCustomer() Customer
+        +getProducts() List~Product~
+        +getTotalAmount() double
+        +getOrderDate() String
+        +getStatus() String
+        +setOrderId(orderId) void
+        +setCustomer(customer) void
+        +setOrderDate(orderDate) void
+        +setStatus(status) void
+        +addProduct(product) void
+        +removeProduct(product) boolean
+        +calculateTotal() void
+        +printReceipt() void
+        +displayOrderSummary() void
+        +toString() String
+    }
+
+    class ECommerceSystem {
+        -List~User~ users
+        -List~Product~ products
+        -List~Order~ orders
+        -Scanner scanner
+        -int orderCounter
+        +ECommerceSystem()
+        +addUser() void
+        +addProduct() void
+        +listUsers() void
+        +listProducts() void
+        +findCustomerByEmail(email) Customer
+        +placeOrder() void
+        +viewAllOrders() void
+        +viewCustomerOrders() void
+        +displayMainMenu() void
+        +run() void
+        +runDemo() void
+    }
+
+    class Main {
+        +main(args) void
+    }
+
+    User <|-- Customer
+    User <|-- Employee
+    Product <|-- Book
+    Product <|-- Electronics
+    Product <|-- Clothing
+
+    Customer --> Order
+    Order --> Product
+    ECommerceSystem --> User
+    ECommerceSystem --> Product
+    ECommerceSystem --> Order
+    Main --> ECommerceSystem
+
+    note for User "Base class with common user attributes"
+    note for Customer "Extends User with address, phone, order history"
+    note for Employee "Extends User with employee ID, department, salary"
+    note for Product "Base class for all products"
+    note for Book "Extends Product with author, ISBN, genre"
+    note for Electronics "Extends Product with brand, model, warranty"
+    note for Clothing "Extends Product with size, color, material"
+    note for Order "Represents customer orders with products"
+    note for ECommerceSystem "Main system class managing all operations"
+    note for Main "Entry point of the application"
